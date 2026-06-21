@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/"你的数据库名称"?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: "你的用户名"
+    password: "你的数据库密码"
+
+  jackson:
+    # 全局时间格式化配置
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      # 禁用将日期写为时间戳
+      write-dates-as-timestamps: false
+    deserialization:
+      # 允许未知属性（增强兼容性）
+      fail-on-unknown-properties: false
+
+  data:
+      redis:
+        host: ${REDIS_HOST:localhost}
+        port: ${REDIS_PORT:6379}
+mybatis:
+    configuration:
+      map-underscore-to-camel-case: true  # 开启驼峰命名和下划线命名的自动转换
+
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 30m  # Session超时时间30分钟
+
+# 导出文件配置
+export:
+  file:
+    path: ${EXPORT_PATH:D:/专业设计/mycode/vue-question/src/exports   # 导出文件存储路径
+    retention:
+      days: 7           # 文件保留天数
